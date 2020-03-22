@@ -3,9 +3,8 @@ import {
   SET_LOADING,
   CLEAR_USERS,
   GET_USER,
-  GET_REPOS,
-  GET_USERS
-} from "../types";
+  GET_REPOS
+} from '../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -24,7 +23,7 @@ export default (state, action) => {
     case CLEAR_USERS:
       return {
         ...state,
-        user: [],
+        users: [],
         loading: false
       };
     case GET_REPOS: {

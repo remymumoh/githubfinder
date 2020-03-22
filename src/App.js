@@ -1,57 +1,36 @@
-import React, { useState, Fragment } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Navbar from "./components/layouts/Navbar";
-import Users from "./components/users/Users";
-import User from "./components/users/User";
-import Search from "./components/users/Search";
-import axios from "axios";
-import Alert from "./components/layouts/Alert";
-import About from "./components/pages/About";
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Navbar from './components/layouts/Navbar';
+import User from './components/users/User';
+import Alert from './components/layouts/Alert';
+import Home from './components/pages/Home';
+import About from './components/pages/About';
+import NotFound from './components/pages/NotFound';
 
-import GithubState from "./components/context/github/GithubState";
+import GithubState from './components/context/github/GithubState';
+import AlertState from './components/context/alert/AlertState';
 
-import "./App.css";
+import './App.css';
 
 const App = () => {
-  const [alert, setAlert] = useState(null);
-
-  //set alert
-  const showAlert = (msg, type) => {
-    setAlert({ msg, type });
-    setTimeout(() => setAlert(null), 5000);
-  };
-
   return (
     <GithubState>
-      <Router>
-        <div className='App'>
-          <Navbar />
-          <div className='container'>
-            <Alert alert={alert} />
-            <Switch>
-              <Route
-                exact
-                path='/'
-                render={props => (
-                  <Fragment>
-                    <Search setAlert={showAlert} />
-                    <User />
-                  </Fragment>
-                )}
-              />
-              <Route exact path='/about' component={About} />
-              <Route
-                exact
-                path='/user/:login'
-                render={props => (
-                  //user component
-                  <User />
-                )}
-              />
-            </Switch>
+      <AlertState>
+        <Router>
+          <div className='App'>
+            <Navbar />
+            <div className='container'>
+              <Alert />
+              <Switch>
+                <Route exact path='/' component={Home} />
+                <Route exact path='/about' component={About} />
+                <Route exact path='/user/:login' component={User} />
+                <Route component={NotFound} />
+              </Switch>
+            </div>
           </div>
-        </div>
-      </Router>
+        </Router>
+      </AlertState>
     </GithubState>
   );
 };
