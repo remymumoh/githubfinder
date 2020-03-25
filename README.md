@@ -1,5 +1,8 @@
 This project was developed using [Create React App](https://github.com/facebook/create-react-app).
 
+## Live application
+Checkout the live site from [Github Finder](https://cocky-lichterman-772e65.netlify.com/user/remy).
+
 ## Available Scripts
 
 In the project directory, you can run:
